@@ -17,6 +17,8 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
 
+    private boolean testMode;
+
     /**
      * Constructs the Treasure Hunter game.
      */
@@ -52,6 +54,11 @@ public class TreasureHunter {
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("y")) {
             hardMode = true;
+        }
+
+        if (hard.equals("test")) {
+            hunter = new Hunter(name, 100);
+            hunter.addAllItems();
         }
     }
 

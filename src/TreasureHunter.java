@@ -100,7 +100,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x")) {
+        while (!choice.equals("x") && hunter.getGold() >= 0) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -115,6 +115,9 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
+        }
+        if(hunter.getGold() < 0) {
+            System.out.println(Colors.RED + "GAME OVER, You have lost all your gold!" + Colors.RESET);
         }
     }
 

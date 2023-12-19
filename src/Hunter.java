@@ -202,10 +202,10 @@ public class Hunter {
     }
 
     public void addAllItems() {
-        addItem("water");
-        addItem("rope");
-        addItem("machete");
-        addItem("horse");
-        addItem("boat");
+        addItem("Water");
+        addItem("Rope");
+        addItem("Machete");
+        addItem("Horse");
+        addItem("Boat");
     }
 }

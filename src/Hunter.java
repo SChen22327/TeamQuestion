@@ -173,6 +173,8 @@ public class Hunter {
     /**
      * @return A string representation of the hunter.
      */
+
+    //HASDASFASFOINADSOBNA FSBJ
     public String toString() {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {

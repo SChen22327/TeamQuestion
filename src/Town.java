@@ -80,7 +80,7 @@ public class Town {
      * @param choice If the user wants to buy or sell items at the shop.
      */
     public void enterShop(String choice) {
-        printMessage = "Farewell, " + hunter.getHunterName() + ", I hope to accept your patronage again.\nYou have left the shop.";
+        printMessage = "You have left the shop.";
         shop.enter(hunter, choice);
     }
 

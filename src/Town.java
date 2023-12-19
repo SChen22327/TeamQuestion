@@ -12,6 +12,8 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
 
+    private boolean dugGold;
+
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
@@ -30,6 +32,8 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+        dugGold = false;
     }
 
     public String getLatestNews() {
@@ -148,5 +152,13 @@ public class Town {
     private boolean checkItemBreak() {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    public void setDugGold() {
+        dugGold = true;
+    }
+
+    public boolean isDugGold() {
+        return dugGold;
     }
 }

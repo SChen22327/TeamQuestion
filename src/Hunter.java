@@ -18,7 +18,7 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
-        kit = new String[6]; // only 5 possible items can be stored in kit
+        kit = new String[7]; // only 7 possible items can be stored in kit
         gold = startingGold;
     }
 
@@ -207,5 +207,18 @@ public class Hunter {
         addItem("machete");
         addItem("horse");
         addItem("boat");
+        addItem("boots");
+        addItem("shovel");
+    }
+
+    public void dig() {
+        int rdm = (int) (Math.random() * 2) + 1;
+        if (rdm == 1) {
+            int rdmGold = (int) (Math.random() * 20) + 1;
+            System.out.println("You dug up " + rdmGold + " gold!");
+            changeGold(rdmGold);
+        } else {
+            System.out.println("You dug but only found dirt");
+        }
     }
 }

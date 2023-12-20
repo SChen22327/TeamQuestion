@@ -259,5 +259,18 @@ public class Hunter {
         addItem("machete");
         addItem("horse");
         addItem("boat");
+        addItem("boots");
+        addItem("shovel");
+    }
+
+    public void dig() {
+        int rdm = (int) (Math.random() * 2) + 1;
+        if (rdm == 1) {
+            int rdmGold = (int) (Math.random() * 20) + 1;
+            System.out.println("You dug up " + rdmGold + " gold!");
+            changeGold(rdmGold);
+        } else {
+            System.out.println("You dug but only found dirt");
+        }
     }
 }

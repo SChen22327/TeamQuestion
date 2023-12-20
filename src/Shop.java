@@ -107,7 +107,7 @@ public class Shop {
     public void buyItem(String item) {
         int costOfItem = checkMarketPrice(item, true);
         if (customer.hasSword() && customer.buyItem(item, costOfItem)) {
-            System.out.println("the sword intimidates the shopkeeper and he gives you the item freely");
+            System.out.println("The sword intimidates the shopkeeper and he gives you the item freely");
         } else if (customer.buyItem(item, costOfItem)) {
             System.out.println("Ye' got yerself a " + Colors.PURPLE + item + Colors.RESET + ". Come again soon.");
         } else {

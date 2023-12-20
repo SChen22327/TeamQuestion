@@ -104,7 +104,7 @@ public class Town {
      */
     public void lookForTrouble() {
         if (hunter.hasSword()) {
-            System.out.println("the brawler, seeing your sword, realizes he picked a losing fight and gives you his gold");
+            System.out.println(Colors.RED + "The brawler, seeing your sword, realizes he picked a losing fight and gives you his gold" + Colors.RESET);
             int goldDiff = (int) (Math.random() * 10) + 1;
             System.out.println("You won the brawl and receive " + Colors.YELLOW + goldDiff + " gold" + Colors.RESET + ".");
             hunter.changeGold(goldDiff);

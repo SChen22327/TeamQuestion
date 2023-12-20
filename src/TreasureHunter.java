@@ -61,13 +61,13 @@ public class TreasureHunter {
             String easy = SCANNER.nextLine().toLowerCase();
             if (easy.equals("y")) {
                 easyMode = true;
-                hunter = new Hunter(name, 20);
+                hunter.setGold(20);
                 Town.setEasy();
             }
         }
 
         if (hard.equals("test")) {
-            hunter.setGold();
+            hunter.setGold(100);
             hunter.addAllItems();
         }
     }
@@ -114,7 +114,7 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
 
-        while (!choice.equals("x") && hunter.getGold() >= 0) {
+        while (!choice.equals("x") && hunter.getGold() >= 0 && hunter.emptyPositionInTreasures() != -1) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -132,8 +132,11 @@ public class TreasureHunter {
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
         }
-        if(hunter.getGold() < 0) {
+        if (hunter.getGold() < 0) {
             System.out.println(Colors.RED + "GAME OVER, You have lost all your gold!" + Colors.RESET);
+        }
+        if (hunter.emptyPositionInTreasures() == -1) {
+            System.out.println("Congratulations, you have found the last of the three treasures, you win!\uD83C\uDF89\uD83C\uDF89");
         }
     }
 

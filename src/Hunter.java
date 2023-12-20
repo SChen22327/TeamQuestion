@@ -41,8 +41,8 @@ public class Hunter {
     public int getGold() {
         return gold;
     }
-    public void setGold() {
-        gold = 100;
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     /**
@@ -250,7 +250,7 @@ public class Hunter {
         return -1;
     }
 
-    private int emptyPositionInTreasures() {
+    public int emptyPositionInTreasures() {
         for (int i = 0; i < treasures.length; i++) {
             if (treasures[i] == null) {
                 return i;

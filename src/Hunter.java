@@ -166,22 +166,26 @@ public class Hunter {
     }
 
     public String getTreasures() {
-
-
+        String printableTreasures = "";
+        for (String item : kit) {
+            if (item != null) {
+                printableTreasures += Colors.BLUE + item + Colors.RESET + " ";
+            }
+        }
+        return printableTreasures;
     }
 
     /**
      * @return A string representation of the hunter.
      */
 
-    //HASDASFASFOINADSOBNA FSBJ
     public String toString() {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
         if (!noTreasures()) {
-            str += "You have found " + ;
+            str += "\nYou have found " + getTreasures();
         }
         return str;
     }

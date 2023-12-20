@@ -138,12 +138,14 @@ public class Town {
         if (searched) {
             printMessage = "You have already searched this town.";
         } else if (!found){
+            searched = true;
             if (treasure.equals("dust")) {
                 printMessage = "You found dust. Pure garbage, you threw it out as soon as you could.";
             } else {
                 printMessage = "You already have " + treasure + " in your inventory.";
             }
         } else {
+            searched = true;
             printMessage = "You searched the town and found " + treasure;
         }
     }

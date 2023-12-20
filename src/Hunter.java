@@ -46,8 +46,8 @@ public class Hunter {
     public int getGold() {
         return gold;
     }
-    public void setGold() {
-        gold = 100;
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     /**
@@ -174,24 +174,31 @@ public class Hunter {
         return printableKit;
     }
 
-//    public String getTreasures() {
-//
-//
-//    }
-//
-//    /**
-//     * @return A string representation of the hunter.
-//     */
-//
-//    //HASDASFASFOINADSOBNA FSBJ
+    public String getTreasures() {
+        String printableTreasures = "";
+        for (String item : treasures) {
+            if (item != null) {
+                printableTreasures += Colors.BLUE + item + Colors.RESET + " ";
+            }
+        }
+        return printableTreasures;
+    }
+
+    /**
+     * @return A string representation of the hunter.
+     */
+
     public String toString() {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
-//        if (!noTreasures()) {
-//            str += "You have found " + ;
-//        }
+        str += ".\nYou have found ";
+        if (!noTreasures()) {
+            str += getTreasures();
+        } else {
+            str += "no treasures.";
+        }
         return str;
     }
 
@@ -252,7 +259,7 @@ public class Hunter {
         return -1;
     }
 
-    private int emptyPositionInTreasures() {
+    public int emptyPositionInTreasures() {
         for (int i = 0; i < treasures.length; i++) {
             if (treasures[i] == null) {
                 return i;

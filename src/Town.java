@@ -10,9 +10,12 @@ public class Town {
     private Shop shop;
     private Terrain terrain;
     private String printMessage;
+    private String[] treasureList;
+    private String treasure;
     private boolean toughTown;
     private boolean dugGold;
     private static boolean isEasy;
+    private boolean searched;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -21,6 +24,7 @@ public class Town {
      * @param toughness The surrounding terrain.
      */
     public Town(Shop shop, double toughness) {
+        treasureList = new String[]{"a crown", "a trophy", "a gem", "dust"};
         this.shop = shop;
         this.terrain = getNewTerrain();
 
@@ -35,6 +39,10 @@ public class Town {
 
         dugGold = false;
         isEasy = false;
+
+        treasure = treasureList[(int) (Math.random() * 4) + 1];
+
+        searched = false;
     }
 
     public String getLatestNews() {
@@ -122,6 +130,21 @@ public class Town {
                 printMessage += "\nYou lost the brawl and pay " + Colors.YELLOW + goldDiff + " gold" + Colors.RESET + ".";
                 hunter.changeGold(-goldDiff);
             }
+        }
+    }
+
+    public void huntForTreasure() {
+        boolean found = hunter.addTreasure(treasure);
+        if (searched) {
+            printMessage = "You have already searched this town.";
+        } else if (!found){
+            if (treasure.equals("dust")) {
+                printMessage = "You found dust. Pure garbage, you threw it out as soon as you could.";
+            } else {
+                printMessage = "You already have " + treasure + " in your inventory.";
+            }
+        } else {
+            printMessage = "You searched the town and found " + treasure;
         }
     }
 

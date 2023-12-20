@@ -10,6 +10,7 @@ public class Hunter {
     private String[] kit;
     private String[] treasures;
     private int gold;
+    private boolean samuraiMode;
 
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
@@ -17,9 +18,13 @@ public class Hunter {
      * @param hunterName The hunter's name.
      * @param startingGold The gold the hunter starts with.
      */
-    public Hunter(String hunterName, int startingGold) {
+    public Hunter(String hunterName, int startingGold, boolean samuraiMode) {
+        this.samuraiMode = samuraiMode;
         this.hunterName = hunterName;
         kit = new String[7]; // only 7 possible items can be stored in kit
+        if (samuraiMode) {
+            kit = new String[8];
+        }
         treasures = new String[3];
         gold = startingGold;
     }
@@ -53,7 +58,11 @@ public class Hunter {
      * @return true if the item is successfully bought.
      */
     public boolean buyItem(String item, int costOfItem) {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
+        if (hasSword()) {
+            addItem(item);
+            return true;
+        }
+        if ((costOfItem == 0 && !item.equals("samurai sword"))|| !samuraiMode || gold < costOfItem || hasItemInKit(item)) {
             return false;
         }
 
@@ -165,24 +174,24 @@ public class Hunter {
         return printableKit;
     }
 
-    public String getTreasures() {
-
-
-    }
-
-    /**
-     * @return A string representation of the hunter.
-     */
-
-    //HASDASFASFOINADSOBNA FSBJ
+//    public String getTreasures() {
+//
+//
+//    }
+//
+//    /**
+//     * @return A string representation of the hunter.
+//     */
+//
+//    //HASDASFASFOINADSOBNA FSBJ
     public String toString() {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
-        if (!noTreasures()) {
-            str += "You have found " + ;
-        }
+//        if (!noTreasures()) {
+//            str += "You have found " + ;
+//        }
         return str;
     }
 
@@ -272,5 +281,21 @@ public class Hunter {
         } else {
             System.out.println("You dug but only found dirt");
         }
+    }
+
+    public boolean hasSword() {
+        for (int i = 0; i < kit.length; i++) {
+            String tmpItem = kit[i];
+
+            if (tmpItem != null && tmpItem.equals("samurai sword")) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isSamuraiMode() {
+        return samuraiMode;
     }
 }

@@ -50,25 +50,21 @@ public class TreasureHunter {
         name = name.substring(0, 1) + name.substring(1);
 
         // set hunter instance variable
-        hunter = new Hunter(name, 10);
+        hunter = new Hunter(name, 10, false);
 
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("Hard mode, Normal mode, Easy mode? (e/n/h): ");
         String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        if (hard.equals("h")) {
             hardMode = true;
-        } else {
-            System.out.print("Easy mode? (y/n): ");
-            String easy = SCANNER.nextLine().toLowerCase();
-            if (easy.equals("y")) {
-                easyMode = true;
-                hunter = new Hunter(name, 20);
-                Town.setEasy();
-            }
-        }
-
-        if (hard.equals("test")) {
+        } else if (hard.equals("s")) {
+            hunter = new Hunter(name, 10, true);
+        } else if (hard.equals("test")) {
             hunter.setGold();
             hunter.addAllItems();
+        } else if (hard.equals("e")){
+            easyMode = true;
+            hunter = new Hunter(name, 20, false);
+            Town.setEasy();
         }
     }
 

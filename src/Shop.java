@@ -15,6 +15,7 @@ public class Shop {
     private static final int BOAT_COST = 20;
     private static final int BOOTS_COST = 8;
     private static final int SHOVEL_COST = 8;
+    private static final int SAMURAI_SWORD_COST = 0;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -49,7 +50,7 @@ public class Shop {
             System.out.print("What're you lookin' to buy? ");
             String item = SCANNER.nextLine().toLowerCase();
             int cost = checkMarketPrice(item, true);
-            if (cost == 0) {
+            if (cost == 0 && !item.equals("samurai sword") && !customer.isSamuraiMode()) {
                 System.out.println("We ain't got none of those.");
             } else {
                 System.out.print("It'll cost you " + Colors.YELLOW + cost + Colors.RESET + " gold. Buy it (y/n)? ");
@@ -91,6 +92,9 @@ public class Shop {
         str += "Boat: " + Colors.YELLOW + BOAT_COST + Colors.RESET + " gold\n";
         str += "Boots: " + Colors.YELLOW + BOOTS_COST + Colors.RESET + " gold\n";
         str += "Shovel: " + Colors.YELLOW + SHOVEL_COST + Colors.RESET + " gold\n";
+        if (customer.isSamuraiMode()) {
+            str += "Samurai Sword: " + Colors.YELLOW + SAMURAI_SWORD_COST + Colors.RESET + " gold\n";
+        }
 
         return str;
     }
@@ -102,7 +106,9 @@ public class Shop {
      */
     public void buyItem(String item) {
         int costOfItem = checkMarketPrice(item, true);
-        if (customer.buyItem(item, costOfItem)) {
+        if (customer.hasSword() && customer.buyItem(item, costOfItem)) {
+            System.out.println("the sword intimidates the shopkeeper and he gives you the item freely");
+        } else if (customer.buyItem(item, costOfItem)) {
             System.out.println("Ye' got yerself a " + Colors.PURPLE + item + Colors.RESET + ". Come again soon.");
         } else {
             System.out.println("Hmm, either you don't have enough gold or you've already got one of those!");
@@ -159,6 +165,8 @@ public class Shop {
             return BOOTS_COST;
         } else if (item.equals("shovel")) {
             return SHOVEL_COST;
+        } else if (item.equals("samurai sword") && customer.isSamuraiMode()) {
+            return SAMURAI_SWORD_COST;
         } else {
             return 0;
         }

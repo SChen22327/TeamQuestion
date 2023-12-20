@@ -167,7 +167,7 @@ public class Hunter {
 
     public String getTreasures() {
         String printableTreasures = "";
-        for (String item : kit) {
+        for (String item : treasures) {
             if (item != null) {
                 printableTreasures += Colors.BLUE + item + Colors.RESET + " ";
             }

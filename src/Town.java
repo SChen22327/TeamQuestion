@@ -40,7 +40,7 @@ public class Town {
         dugGold = false;
         isEasy = false;
 
-        treasure = treasureList[(int) (Math.random() * 4) + 1];
+        treasure = treasureList[(int) (Math.random() * 3)];
 
         searched = false;
     }

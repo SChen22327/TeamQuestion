@@ -62,7 +62,7 @@ public class Hunter {
             addItem(item);
             return true;
         }
-        if ((costOfItem == 0 && !item.equals("samurai sword"))|| !samuraiMode || gold < costOfItem || hasItemInKit(item)) {
+        if ((costOfItem == 0 && !item.equals("samurai sword")) || gold < costOfItem || hasItemInKit(item)) {
             return false;
         }
 
@@ -167,7 +167,7 @@ public class Hunter {
 
         for (String item : kit) {
             if (item != null) {
-                printableKit += Colors.PURPLE + item + Colors.RESET + space;
+                printableKit += space + Colors.PURPLE + item + Colors.RESET;
             }
         }
 
@@ -191,7 +191,7 @@ public class Hunter {
     public String toString() {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
-            str += " and " + getInventory();
+            str += " and" + getInventory();
         }
         str += ".\nYou have found ";
         if (!noTreasures()) {

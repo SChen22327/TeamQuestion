@@ -197,6 +197,7 @@ public class Town {
     }
 
     public void setDugGold() {
+        printMessage = "";
         dugGold = true;
     }
 
